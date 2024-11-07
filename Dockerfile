@@ -10,8 +10,8 @@ RUN mix local.hex --force && \
     mix local.rebar --force && \
     mix archive.install --force hex phx_new 1.7.14
 
-# Install node
-RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.0/install.sh | bash - && nvm install 22
+RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && \
+    apt-get install -y nodejs
 
 WORKDIR /app
 
