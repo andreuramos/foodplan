@@ -15,8 +15,8 @@ RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && \
 
 WORKDIR /app
 
-RUN mix deps.get
-RUN npm install --prefix ./assets
+# RUN mix deps.get
+# RUN npm install --prefix ./assets
 
 EXPOSE 4000
 
