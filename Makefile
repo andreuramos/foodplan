@@ -2,4 +2,4 @@ build:
 	@docker-compose build
 
 elixir:
-	@docker run -it -v $(pwd):/app elixir:latest sh
+	@docker run --rm -it -v $(pwd):/app -w /app elixir:latest sh
