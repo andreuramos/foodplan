@@ -5,6 +5,9 @@ defmodule Foodplan.Recipe do
   schema "recipees" do
     field :name, :string
     field :category, :string
+    field :cooking_time, :integer
+    field :steps, :string
+    field :ingredients, :string
 
     timestamps(type: :utc_datetime)
   end
@@ -12,7 +15,7 @@ defmodule Foodplan.Recipe do
   @doc false
   def changeset(recipe, attrs) do
     recipe
-    |> cast(attrs, [:name, :category])
-    |> validate_required([:name, :category])
+    |> cast(attrs, [:name, :category, :cooking_time, :steps, :ingredients])
+    |> validate_required([:name, :category, :cooking_time, :steps, :ingredients])
   end
 end
