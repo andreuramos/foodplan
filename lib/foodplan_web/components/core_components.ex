@@ -673,4 +673,56 @@ defmodule FoodplanWeb.CoreComponents do
   def translate_errors(errors, field) when is_list(errors) do
     for {^field, {msg, opts}} <- errors, do: translate_error({msg, opts})
   end
+
+  @doc """
+  Renders a recipe form.
+
+  ## Examples
+
+      <.recipe_form changeset={@changeset} />
+  """
+  attr :changeset, Ecto.Changeset, required: true
+
+  def recipe_form(assigns) do
+    ~H"""
+    <.simple_form for={@changeset} phx-change="validate" phx-submit="save">
+      <.input field={@changeset[:name]} label="Name" />
+      <.input field={@changeset[:category]} label="Category" />
+      <.input field={@changeset[:cooking_time]} label="Cooking Time" type="number" />
+      <.input field={@changeset[:steps]} label="Steps" type="textarea" />
+      <.input field={@changeset[:ingredients]} label="Ingredients" type="textarea" />
+      <:actions>
+        <.button>Save</.button>
+        <.button phx-click="cancel">Cancel</.button>
+      </:actions>
+    </.simple_form>
+    """
+  end
+
+  @doc """
+  Renders a list of recipes.
+
+  ## Examples
+
+      <.recipe_list recipes={@recipes} />
+  """
+  attr :recipes, :list, required: true
+
+  def recipe_list(assigns) do
+    ~H"""
+    <div>
+      <%= for recipe <- @recipes do %>
+        <div>
+          <h2><%= recipe.name %></h2>
+          <p>Category: <%= recipe.category %></p>
+          <p>Cooking Time: <%= recipe.cooking_time %> minutes</p>
+          <p>Steps: <%= recipe.steps %></p>
+          <p>Ingredients: <%= recipe.ingredients %></p>
+          <button phx-click="edit" phx-value-id="<%= recipe.id %>">Edit</button>
+          <button phx-click="delete" phx-value-id="<%= recipe.id %>">Delete</button>
+        </div>
+      <% end %>
+    </div>
+    """
+  end
 end

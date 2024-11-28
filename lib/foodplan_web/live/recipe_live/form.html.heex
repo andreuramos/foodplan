@@ -1,0 +1,14 @@
+<div>
+  <h1>Recipe Form</h1>
+  <.simple_form for={@changeset} phx-change="validate" phx-submit="save">
+    <.input field={@changeset[:name]} label="Name" />
+    <.input field={@changeset[:category]} label="Category" />
+    <.input field={@changeset[:cooking_time]} label="Cooking Time" type="number" />
+    <.input field={@changeset[:steps]} label="Steps" type="textarea" />
+    <.input field={@changeset[:ingredients]} label="Ingredients" type="textarea" />
+    <:actions>
+      <.button>Save</.button>
+      <.button phx-click="cancel">Cancel</.button>
+    </:actions>
+  </.simple_form>
+</div>

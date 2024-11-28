@@ -18,6 +18,11 @@ defmodule FoodplanWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :home
+
+    live "/recipes", RecipeLive, :index
+    live "/recipes/new", RecipeLive, :new
+    live "/recipes/:id/edit", RecipeLive, :edit
+    live "/recipes/:id", RecipeLive, :show
   end
 
   # Other scopes may use custom stacks.

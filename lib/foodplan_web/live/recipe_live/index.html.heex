@@ -1,0 +1,17 @@
+<div>
+  <h1>Recipes</h1>
+  <div>
+    <%= for recipe <- @recipes do %>
+      <div>
+        <h2><%= recipe.name %></h2>
+        <p>Category: <%= recipe.category %></p>
+        <p>Cooking Time: <%= recipe.cooking_time %> minutes</p>
+        <p>Steps: <%= recipe.steps %></p>
+        <p>Ingredients: <%= recipe.ingredients %></p>
+        <button phx-click="edit" phx-value-id="<%= recipe.id %>">Edit</button>
+        <button phx-click="delete" phx-value-id="<%= recipe.id %>">Delete</button>
+      </div>
+    <% end %>
+  </div>
+  <button phx-click="new">New Recipe</button>
+</div>
